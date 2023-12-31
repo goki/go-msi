@@ -290,7 +290,7 @@ var verReg = regexp.MustCompile(`\s[0-9]+[.][0-9]+[.][0-9]+`)
 
 func checkEnv(c *cli.Context) error {
 
-	for _, b := range []string{"heat", "light", "candle"} {
+	for _, b := range []string{"wix"} {
 		if out, err := util.Exec(b, "-h"); out == "" {
 			fmt.Printf("!!	%v not found: %q\n", b, err)
 		} else {
@@ -303,7 +303,7 @@ func checkEnv(c *cli.Context) error {
 				if err != nil {
 					fmt.Printf("??	%v found but its version is not parsable %v\n", b, version)
 				} else {
-					min := "3.10.0"
+					min := "4.0.0"
 					if !ver.GreaterThan(semver.MustParse(min)) {
 						fmt.Printf("!!	%v found %v but %v is required\n", b, version, min)
 					} else {
@@ -352,7 +352,7 @@ func checkJSON(c *cli.Context) error {
 		}
 	}
 
-	fmt.Println("The manifest is syntaxically correct !")
+	fmt.Println("The manifest is syntactically correct !")
 
 	if wixFile.NeedGUID() {
 		fmt.Println("The manifest needs Guid")
@@ -708,7 +708,7 @@ func quickMake(c *cli.Context) error {
 	if keep == false {
 		// err = os.RemoveAll(out)
 		// if err != nil {
-			// return cli.NewExitError(err.Error(), 1)
+		// return cli.NewExitError(err.Error(), 1)
 		// }
 	} else {
 		fmt.Printf("Build files are available in %s\n", out)
